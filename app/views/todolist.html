@@ -1,0 +1,30 @@
+<div>
+
+  <h1>Todo list for {{today | date:'longDate'}}</h1> <br>
+  <form class="form" ng-submit="submitChore()">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Enter a chore" ng-model="new.title"required />
+    </div>
+    <div >
+      <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
+    </div>
+  </form> <br> <br> <br> <br>
+
+  <input type="text" class="form-control" placeholder="Search through chores" ng-model="searchChores"><br>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="chore in chores | filter : searchChores">
+      <p>{{chore.title}}
+        <button class="btn btn-primary pull-right" ng-click="moveToDone(chore)"><span class="glyphicon glyphicon-ok"></span> Done</button>
+      </p>
+    </li>
+  </ul>
+  <p ng-show="!chores.length">There are no items in your todo list</p>
+</div>
+
+<h3><u>Done</u></h3>
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="doneChore in doneChores">
+    <strike>{{doneChore.title}}</strike>
+  </li>
+</ul>
+<p ng-show="!doneChores.length">You haven't crossed any items of your list</p>
